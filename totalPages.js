@@ -1,10 +1,8 @@
 const { template } = require('@babel/core')
 
 function totalPages(arrayItems, rowsPerPage) {
-    let page
-    const isNullUndefined = check => (check === null || check === undefined)
-    if (isNullUndefined(rowsPerPage) || rowsPerPage === 0) page = 1
-    else page = isNullUndefined(arrayItems) ? undefined : Math.ceil(arrayItems.length / rowsPerPage)
-    return page
+    return !arrayItems ? undefined : 
+           (!rowsPerPage || rowsPerPage === 0 ? 
+           1 : Math.ceil(arrayItems.length / rowsPerPage))
 }
 module.exports = totalPages
